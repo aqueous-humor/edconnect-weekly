@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            .footer {
+              bottom:0;
+              right:0;
+              width:100%;
+              height: 30px;
+            }
+          </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+                <a class="navbar-brand" href="index.html">Project Explorer</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search Projects" aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Submit</a>
+                    </li>
+                  </ul>  
+                </div>
+                <div class="d-flex justify-content-end" id="navbarsExampleDefault">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="register.html">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="login.html">Login</a>
+                  </ul>
+                </div>  
+              </nav>
+        </header>
+        <main>
+            <div>
+                <h4 class="mx-auto my-5">Project Gallery</h4>
+            </div>
+            <div class="bg-light p-3">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-9">
+                    <label class="sr-only"  for="searchTerm">Search</label>
+                    <input type="text" name="searchTerm" class="form-control form-control-lg" placeholder="Search project name, authors, abstract, tags">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label class="sr-only" for="searchType">Search by</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Search by</div>
+                      </div>
+                      <select name="searchType" class="form-control form-control-lg">
+                        <option value="Name">Name</option>
+                        <option value="Authors">Authors</option>
+                        <option value="Abstract">Abstract</option>
+                        <option value="Tags">Tags</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-1">
+                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <section>
+                <div class="d-flex align-items-baseline my-5">
+                  <h5 class="font-weight-bold">All Projects</h5>
+                  <p class="text-muted ml-2">(0 results)</p>
+                </div>
+                <div class="row row-cols-2">
+                  <div class="col-md-4">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">The Growth and Characterization of CdS Thinfilm by Solution Technique</h5>
+                        <h6 class="card-subtitle text-muted">John Doe, Jane Doe</h6>
+                        <p class="card-text">Successful growth of cadmium I1 sulphide (CdS)thin film on glass substrate, using Tioethanolamine (TEA) as canplexing agent, cadmium acetate (Cd(CH3COO)2. ZH20 1,ANiionle solution (NH3), and Thiourea (SC(NH2l2) at a pH of ll*. shown that CdS cannot grow in acid medium...</p>
+                        <a href="#" class="card-link">#CdS</a>
+                        <a href="#" class="card-link">#thinfilm</a>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">Reliability Reasoning over Vague Ontologies using Fuzzy Soft Set Theory</h5>
+                        <h6 class="card-subtitle text-muted">John Doe, Jane Doe</h6>
+                        <p class="card-text">Ontology is an explicit representation of conceptualizations, which is widely used in modelling real world domains by defining their shared vocabularies such that they can be understood by both human and machines for the purpose of information sharing...</p>
+                        <a href="#" class="card-link">#ontology</a>
+                        <a href="#" class="card-link">#softset</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </section>
+            <div class="footer bg-light my-sm-1 d-flex align-items-center justify-content-end">
+                <p class="text-muted ">Project Explorer &copy; 2021 &#183;</p><br><br>
+                <p class="px-2">Edconnect</p>
+            </div>
+        </main>
