@@ -45,18 +45,17 @@
         </header>
         <main>
             <div>
-                <h4 class="mx-auto my-5">Project Gallery</h4>
+                <h4 class="mx-5 my-5">Project Gallery</h4>
             </div>
-            <div class="bg-light p-3">
-              <form>
-                <div class="form-row">
-                  <div class="form-group col-md-9">
-                    <label class="sr-only"  for="searchTerm">Search</label>
-                    <input type="text" name="searchTerm" class="form-control form-control-lg" placeholder="Search project name, authors, abstract, tags">
-                  </div>
-                  <div class="form-group col-md-2">
-                    <label class="sr-only" for="searchType">Search by</label>
-                    <div class="input-group mb-2">
+            <div class="bg-light p-3 ml-lg-5">
+              <form class="form-row">
+                <div class="form-group col-8">
+                  <label class="form-label sr-only"  for="searchTerm">Search</label>
+                  <input type="text" name="searchTerm" class="form-control form-control-lg" placeholder="Search project name, authors, abstract, tags">
+                </div>
+                <div class="form-group col">
+                  <label class="form-label sr-only" for="searchType">Search by</label>
+                    <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">Search by</div>
                       </div>
@@ -67,45 +66,44 @@
                         <option value="Tags">Tags</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group col-md-1">
-                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
-                  </div>
+                </div>
+                <div class="form-group col">
+                  <button type="submit" class="btn btn-lg btn-primary">Submit</button>
                 </div>
               </form>
             </div>
-            <section>
-                <div class="d-flex align-items-baseline my-5">
-                  <h5 class="font-weight-bold">All Projects</h5>
-                  <p class="text-muted ml-2">(0 results)</p>
-                </div>
-                <div class="row row-cols-2">
-                  <div class="col-md-4">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title text-primary">The Growth and Characterization of CdS Thinfilm by Solution Technique</h5>
-                        <h6 class="card-subtitle text-muted">John Doe, Jane Doe</h6>
-                        <p class="card-text">Successful growth of cadmium I1 sulphide (CdS)thin film on glass substrate, using Tioethanolamine (TEA) as canplexing agent, cadmium acetate (Cd(CH3COO)2. ZH20 1,ANiionle solution (NH3), and Thiourea (SC(NH2l2) at a pH of ll*. shown that CdS cannot grow in acid medium...</p>
-                        <a href="#" class="card-link">#CdS</a>
-                        <a href="#" class="card-link">#thinfilm</a>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title text-primary">Reliability Reasoning over Vague Ontologies using Fuzzy Soft Set Theory</h5>
-                        <h6 class="card-subtitle text-muted">John Doe, Jane Doe</h6>
-                        <p class="card-text">Ontology is an explicit representation of conceptualizations, which is widely used in modelling real world domains by defining their shared vocabularies such that they can be understood by both human and machines for the purpose of information sharing...</p>
-                        <a href="#" class="card-link">#ontology</a>
-                        <a href="#" class="card-link">#softset</a>
-                      </div>
-                    </div>
+            <div class="d-flex align-items-baseline mx-5 my-5">
+              <h5 class="font-weight-bold">All Projects</h5>
+              <p class="text-muted ml-2">(0 results)</p>
+            </div>
+            <div class="row mx-3">
+              <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">The Growth and Characterization of CdS Thinfilm by Solution Technique</h5>
+                    <h6 class="card-subtitle text-muted my-2">John Doe, Jane Doe</h6>
+                    <p class="card-text">Successful growth of cadmium I1 sulphide (CdS)thin film on glass substrate, using Tioethanolamine (TEA) as canplexing agent, cadmium acetate (Cd(CH3COO)2. ZH20 1,ANiionle solution (NH3), and Thiourea (SC(NH2l2) at a pH of ll*. shown that...</p>
+                    <a href="#" class="card-link">#CdS</a>
+                    <a href="#" class="card-link">#thinfilm</a>
                   </div>
                 </div>
-            </section>
-            <div class="footer bg-light my-sm-1 d-flex align-items-center justify-content-end">
-                <p class="text-muted ">Project Explorer &copy; 2021 &#183;</p><br><br>
-                <p class="px-2">Edconnect</p>
+              </div>
+              <div class="col-3">
+                <div class="card"> 
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Reliability Reasoning over Vague Ontologies using Fuzzy Soft Set Theory</h5>
+                    <h6 class="card-subtitle text-muted my-2">John Doe, Jane Doe</h6>
+                    <p class="card-text">Ontology is an explicit representation of conceptualizations, which is widely used in modelling real world domains by defining their shared vocabularies such that they can be understood by both human and machines for the purpose of information sharing...</p>
+                    <a href="#" class="card-link">#ontology</a>
+                    <a href="#" class="card-link">#softset</a>
+                  </div>
+                </div>
+              </div>
             </div>
         </main>
+        <div class="footer bg-light my-sm-1 d-flex align-items-center justify-content-end">
+          <p class="text-muted ">Project Explorer &copy; 2021 &#183;</p>
+          <p class="px-2">Edconnect</p>
+      </div>
+    </body>
+</html>

@@ -44,12 +44,13 @@
               </nav>
 
         </header>
-        <main>            
-            <div class="d-flex align-items-baseline align-content-start">
-              <h5 class="mr-4 mt-5"><b>Samuel Ehwarieme</b></h5>
-              <p class="text-muted">akpos97@gmail.com</p>
-            </div>
-            <div class="container row bg-light">
+        <main>
+          <div class="d-flex align-items-baseline">
+            <h5 class="mr-3 ml-5 mt-5"><b>Samuel Ehwarieme</b></h5>
+            <p class="text-muted">akpos97@gmail.com</p>
+          </div>            
+          <div class="container bg-light">
+            <div class="row">
                 <div class="col-md-4">
                     <h6>Program</h6>
                     <p>Computer Science</p>
@@ -63,26 +64,27 @@
                     <p>2021</p>
                 </div>
             </div>
+          </div>
             <div>
-                <h4 class="my-5 pb-3 border-bottom">Update Profile</h4>
-                <form name="updateProfile" class="mx-auto w-50">
+                <h4 class="my-5 mx-5 pb-3 border-bottom">Update Profile</h4>
+                <form name="updateProfile" class="mx-auto w-75">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label for="firstName">First Name</label>
+                        <div class="form-group col">
+                          <label class="form-label" for="firstName">First Name</label>
                           <input type="text" class="form-control" name="firstName">
                         </div>
-                        <div class="form-group col-md-6">
-                          <label for="lastName">Last Name</label>
+                        <div class="form-group col">
+                          <label class="form-label" for="lastName">Last Name</label>
                           <input type="text" class="form-control" name="lastName">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label for="email">Email Address</label>
+                        <div class="form-group col">
+                          <label class="form-label" for="email">Email Address</label>
                           <input type="email" class="form-control" name="email">
                         </div>
-                        <div class="form-group col-md-6">
-                          <label for="program">Program:</label>
+                        <div class="form-group col">
+                          <label class="form-label" for="program">Program</label>
                           <select name="program" class="form-control">
                               <option selected>Choose...</option>
                               <option value="computer_science">Computer Science</option>
@@ -95,12 +97,12 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label for="matricNumber">Matriculation Number</label>
+                        <div class="form-group col">
+                          <label class="form-label" for="matricNumber">Matriculation Number</label>
                           <input type="text" name="matricNumber" class="form-control">
                         </div>
-                        <div class="form-group col-md-6">
-                          <label for="graduationYear">Graduation Year</label>
+                        <div class="form-group col">
+                          <label class="form-label" for="graduationYear">Graduation Year</label>
                           <select name="graduationYear" class="form-control">
                               <option selected>Choose...</option>
                               <option value="2013">2013</option>
@@ -120,20 +122,20 @@
                   </form>
             </div>
             <div>
-              <h4 class="my-5 pb-3 border-bottom">Change Password</h4>
-                <form name="changePassword" class="mx-auto w-50">
+              <h4 class="my-5 mx-5 pb-3 border-bottom">Change Password</h4>
+                <form name="changePassword" class="mx-auto w-75">
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="currentPassword">Current Password</label>
-                      <input type="password" name="currentPassword" class="form-control">
+                    <div class="form-group col">
+                      <label class="form-label" for="currentPassword">Current Password</label>
+                      <input type="password" name="currentPassword" class="form-control" placeholder="Current password">
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="newPassword">New Password</label>
-                      <input type="password" name="newPassword" class="form-control">
+                    <div class="form-group col">
+                      <label class="form-label" for="newPassword">New Password</label>
+                      <input type="password" name="newPassword" class="form-control" placeholder="Your new password">
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="confirmPassword">Confirm Password</label>
-                      <input type="password" name="confirmPassword" class="form-control">  
+                    <div class="form-group col">
+                      <label class="form-label" for="confirmPassword">Confirm Password</label>
+                      <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm new password">  
                     </div>
                   </div>
                   <div>
@@ -143,6 +145,8 @@
             </div>
         </main>
         <div class="footer bg-light my-sm-1 d-flex align-items-center justify-content-end">
-            <p class="text-muted ">Project Explorer &copy; 2021 &#183;</p><br><br>
+            <p class="text-muted ">Project Explorer &copy; 2021 &#183;</p>
             <p class="px-2">Edconnect</p>
-          </div>
+        </div>
+    </body>
+</html>
