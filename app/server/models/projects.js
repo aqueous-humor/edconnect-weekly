@@ -15,7 +15,7 @@ class Projects extends DataModel {
     validate(obj) {
        this.errors = [];
        for (let key in obj) {
-           if (obj[key] == '' || obj[key] == []) {
+           if (obj[key] == '' || obj[key] == [] || obj[key] == null) {
               this.errors.push(`${key} should not be empty`);
             }
        }
