@@ -45,13 +45,28 @@ class Users extends DataModel {
     }
 
     validate(obj) {
-        if (this.data.find(object =>  object.email == obj.email) || this.data.find(object =>  object.matricNumber == obj.matricNumber)) {
+        this.errors = [];
+        for (let key in obj) {
+            if (obj[key] == '' || obj[key] == null) {
+                this.errors.push(`${key} should not be empty`);
+            }
+        }
+        if (this.data.find(object =>  object.email == obj.email)) {
+            this.errors.push('A user with specified email address already exists');
+            return false;
+        } 
+        if (this.data.find(object =>  object.matricNumber == obj.matricNumber)){
+            this.errors.push('A user with specified matric number already exists');
             return false;
         }
-        if (Object.values(obj).some(x => (x == null || x == '')) || obj.password.length < 7) {
+        if (obj.password.length < 7) {
+            this.errors.push('Password should have at least 7 characters');
             return false;
         }
-        return true
+        if (Object.values(obj).some(x => (x == null || x == ''))) {
+            return false;
+        }
+        return true;
     }
 }
 
