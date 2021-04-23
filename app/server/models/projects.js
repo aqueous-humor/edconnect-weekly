@@ -27,10 +27,11 @@ class Projects extends DataModel {
        }
 
 
-       if (!Array.isArray(obj.authors) || !Array.isArray(obj.tags) || Object.values(obj).some(x => (x == null || x == ''))) {
-        return false;
-       }
+       if (this.errors.length == 0) {
         return true;
+       } else {
+           return false;
+       }
     }
 }
 
