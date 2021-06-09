@@ -53,13 +53,13 @@ async function updateNav () {
   let cookieVal = getCookie('uid');
   let beforeLogin = document.getElementById('info-bar');
   let afterLogin = document.getElementById('info-bar1');
+  let userGreeting = document.getElementById('username');
+  let logout = document.getElementById('logout');
   if (cookieVal !== '') {
     beforeLogin.style.display = 'none'
     const response = await fetch('/api/users/'+cookieVal+'');
     const userDb = await response.json();
-    let userGreeting = document.getElementById('username');
     userGreeting.innerHTML = `Hi, ${userDb.firstname}`
-    let logout = document.getElementById('logout');
     logout.onclick = function logOff() {
       delCookie('uid');
       window.location.href = 'index.html';
@@ -323,8 +323,8 @@ async function updateViewProject () {
 }
 
 if (path.includes('index.html')) {
-  window.onload = getProjects();
   window.onload = updateNav();
+  window.onload = getProjects();
 }
 
 if (path.includes('login.html')) {
@@ -338,9 +338,9 @@ if (path.includes('profile.html')) {
 }
 
 if (path.includes('register.html')) {
+  window.onload = updateNav();
   getPrograms();
   getGraduationYears();
-  window.onload = updateNav();
   const form = document.querySelector('.needs-validation');
   form.addEventListener('submit', registerUser);  
 }
