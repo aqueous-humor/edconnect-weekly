@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            .footer {
+              bottom:0;
+              right:0;
+              width:100%;
+              height: 30px;
+            }
+          </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+                <a class="navbar-brand" href="index.html">Project Explorer</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search Projects" aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Submit</a>
+                    </li>
+                  </ul>  
+                </div>
+                <div class="d-flex justify-content-end" id="navbarsExampleDefault2">
+                  <ul id="info-bar" class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="register.html">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="login.html">Login</a>
+                  </ul>
+                </div>  
+              </nav>
+
+        </header>
+        <main>
+          <div class="d-flex align-items-baseline">
+            <h5 class="mr-3 ml-5 mt-5"><b>Ade Chuks</b></h5>
+            <p class="text-muted">ade@edconnect.ng</p>
+          </div>            
+          <div class="container bg-light">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>Program</h6>
+                    <p>Computer Information Systems</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Matriculation Number</h6>
+                    <p>33/3333</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Graduation Year</h6>
+                    <p>2018</p>
+                </div>
+            </div>
+          </div>
+            <div>
+                <h4 class="my-5 mx-5 pb-3 border-bottom">Update Profile</h4>
+                <form name="updateProfile" class="mx-auto w-75">
+                    <div class="form-row">
+                        <div class="form-group col">
+                          <label class="form-label" for="firstName">First Name</label>
+                          <input type="text" class="form-control" name="firstName">
+                        </div>
+                        <div class="form-group col">
+                          <label class="form-label" for="lastName">Last Name</label>
+                          <input type="text" class="form-control" name="lastName">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                          <label class="form-label" for="email">Email Address</label>
+                          <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="form-group col">
+                          <label class="form-label" for="program">Program</label>
+                          <select name="program" class="form-control">
+                              <option selected>Choose...</option>
+                              <option value="computer_science">Computer Science</option>
+                              <option value="computer_information_systems">Computer Information Systems</option>
+                              <option value="computer_technology">Computer Technology</option>
+                              <option value="computer_engineering">Computer Engineering</option>
+                              <option value="physics">Physics</option>
+                              <option value="accounting">Accounting</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                          <label class="form-label" for="matricNumber">Matriculation Number</label>
+                          <input type="text" name="matricNumber" class="form-control">
+                        </div>
+                        <div class="form-group col">
+                          <label class="form-label" for="graduationYear">Graduation Year</label>
+                          <select name="graduationYear" class="form-control">
+                              <option selected>Choose...</option>
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>
+                              <option value="2015">2015</option>
+                              <option value="2016">2016</option>
+                              <option value="2017">2017</option>
+                              <option value="2018">2018</option>
+                              <option value="2019">2019</option>
+                              <option value="2020">2020</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                  </form>
+            </div>
+            <div>
+              <h4 class="my-5 mx-5 pb-3 border-bottom">Change Password</h4>
+                <form name="changePassword" class="mx-auto w-75">
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <label class="form-label" for="currentPassword">Current Password</label>
+                      <input type="password" name="currentPassword" class="form-control" placeholder="Current password">
+                    </div>
+                    <div class="form-group col">
+                      <label class="form-label" for="newPassword">New Password</label>
+                      <input type="password" name="newPassword" class="form-control" placeholder="Your new password">
+                    </div>
+                    <div class="form-group col">
+                      <label class="form-label" for="confirmPassword">Confirm Password</label>
+                      <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm new password">  
+                    </div>
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                  </div>     
+                </form>
+            </div>
+        </main>
+        <div class="footer bg-light my-sm-1 d-flex align-items-center justify-content-end">
+            <p class="text-muted ">Project Explorer &copy; 2021 &#183;</p>
+            <p class="px-2">Edconnect</p>
+        </div>
+        <script src="js/app.js"></script>
+    </body>
+</html>
