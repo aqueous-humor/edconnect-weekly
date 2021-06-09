@@ -59,7 +59,7 @@ async function updateNav () {
     const response = await fetch('/api/users/'+cookieVal+'');
     const userDb = await response.json();
     let userGreeting = document.getElementById('username');
-    userGreeting.textContent = userGreeting.textContent + ' '+userDb.firstname+'';
+    userGreeting.innerHTML = `Hi, ${userDb.firstname}`
     let logout = document.getElementById('logout');
     logout.onclick = function logOff() {
       delCookie('uid');
