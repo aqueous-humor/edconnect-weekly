@@ -61,7 +61,7 @@ async function updateNav () {
     beforeLogin.style.display = 'none'
     const response = await fetch('/api/users/'+cookieVal+'');
     const userDb = await response.json();
-    updatedInfoBar.innerHTML = '<li class="nav-item"><a id="logout" class="nav-link" href="#">Logout</a></li><li class="nav-item"><p id="username" class="navbar-text">Hi, '+userDb.firstname+'</p>'
+    updatedInfoBar.innerHTML = '<li class="nav-item" id="logout"><a class="nav-link" href="#">Logout</a></li><li class="nav-item" id="username"><p class="navbar-text">Hi, '+userDb.firstname+'</p>'
     let logout = document.getElementById('logout');
     logout.onclick = function logOff() {
       delCookie('uid');
