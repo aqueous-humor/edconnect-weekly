@@ -224,6 +224,7 @@ async function updateViewProject () {
   row1.className = 'row bg-light d-flex align-items-center';
   container1.appendChild(row1);
   let createdByDiv = document.createElement('div');
+  createdByDiv.id = 'project_author';
   createdByDiv.className = 'col text-center';
   createdByDiv.innerHTML = '<h6>Created By</h6>' + '<p>'+userData.firstname+' '+userData.lastname+'</p>';
   let dateCreatedDiv = document.createElement('div');
