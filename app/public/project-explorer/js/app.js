@@ -52,21 +52,21 @@ async function getGraduationYears () {
 
 async function updateNav () {
   let cookieVal = getCookie('uid');
-  let container = document.getElementById('navbarsExampleDefault2');
-  let updatedInfoBar = document.createElement('ul');
-  updatedInfoBar.className = 'navbar-nav mr-auto';
   let beforeLogin = document.getElementById('info-bar');
-  container.appendChild(updatedInfoBar);
+  let afterLogin = document.getElementById('info-bar1');
   if (cookieVal !== '') {
     beforeLogin.style.display = 'none'
     const response = await fetch('/api/users/'+cookieVal+'');
     const userDb = await response.json();
-    updatedInfoBar.innerHTML = '<li class="nav-item" id="logout"><a class="nav-link" href="#">Logout</a></li><li class="nav-item" id="username"><p class="navbar-text">Hi, '+userDb.firstname+'</p></li>'
+    let userGreeting = document.getElementById('username');
+    userGreeting.textContent = userGreeting.textContent + ' '+userDb.firstname+'';
     let logout = document.getElementById('logout');
     logout.onclick = function logOff() {
       delCookie('uid');
       window.location.href = 'index.html';
     }
+  } else {
+    afterLogin.style.display = 'none';
   }
 }
 
