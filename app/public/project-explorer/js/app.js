@@ -1,4 +1,3 @@
-
 let path = window.location.pathname;
 
 function setCookie(name, value, days) {
@@ -74,6 +73,11 @@ async function registerUser (event) {
   event.preventDefault();
   const formData = new FormData(event.target);
   const formJSON = Object.fromEntries(formData.entries());
+  formJSON.firstname = formJSON.firstName;
+  formJSON.lastname = formJSON.lastName;
+  delete formJSON.firstName;
+  delete formJSON.lastName;
+  console.log(formJSON)
   const response = await fetch('/api/register', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
