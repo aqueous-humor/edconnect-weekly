@@ -5,7 +5,6 @@ import {
     FormGroup,
     FormLabel,
     Button,
-    Col,
     Container,
 } from 'react-bootstrap';
 import Layout from './shared/Layout';

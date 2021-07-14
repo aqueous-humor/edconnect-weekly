@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     Form,
     FormControl,
     FormGroup,
     FormLabel,
     Button,
-    Col,
     Container,
 } from 'react-bootstrap';
 import Layout from './shared/Layout';

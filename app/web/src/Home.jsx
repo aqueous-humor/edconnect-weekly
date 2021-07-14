@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Layout from './shared/Layout';
-import { useCookies } from "react-cookie";
+
 
 const Home = () => {
     const [projectList, setProjectList] = useState([]);
@@ -37,10 +37,10 @@ const Home = () => {
                 <Container>
                     <Row>
                         {projectList.map((project) => {
-                            return (<Col>
-                                <div className='card' key={project.name}>
+                            return (<Col key={project.name}>
+                                <div className='card'>
                                     <div className='card-body'>
-                                        <h5 classname='card-title'>
+                                        <h5 className='card-title'>
                                             <Link className='card-link' to={`projects/:${project.id}`}>{project.name}</Link>
                                         </h5>
                                         <h6 className='card-subtitle text-muted my-2'>{project.authors}</h6>
