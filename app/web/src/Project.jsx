@@ -30,7 +30,7 @@ const Project = () => {
         const abortController = new AbortController();
         const signal = abortController.signal;
         const getProjectDB = async () => {
-            const projectInfoResponse = await fetch(`/api/projects/${ID}`);
+            const projectInfoResponse = await fetch(`/api/projects/${ID}`, {signal: signal});
             const projectInfo = await projectInfoResponse.json();
             const createdBy = projectInfo.createdBy;
             const userInfoResponse = await fetch(`/api/users/${createdBy}`, {signal: signal});
