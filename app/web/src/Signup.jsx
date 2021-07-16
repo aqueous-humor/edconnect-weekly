@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
 import { useCookies } from "react-cookie";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 const Signup = () => {
@@ -46,20 +46,27 @@ const Signup = () => {
         setErrors(Errors);
     }
 
-    const getPrograms = async () => {
-        const programs = await fetch('/api/programs');
-        const programsJSON = await programs.json();
-        setProgramList(programsJSON);
-    };
-    const getGraduationYears = async () => {
-        const graduationYears = await fetch('/api/graduationYears');
-        const graduationYearsJSON = await graduationYears.json();
-        setGraduationYearList(graduationYearsJSON);
-    };
+    
+    
 
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+        const getPrograms = async () => {
+            const programs = await fetch('/api/programs', {signal: signal});
+            const programsJSON = await programs.json();
+            setProgramList(programsJSON);
+        };
+        const getGraduationYears = async () => {
+            const graduationYears = await fetch('/api/graduationYears', {signal: signal});
+            const graduationYearsJSON = await graduationYears.json();
+            setGraduationYearList(graduationYearsJSON);
+        };
         getPrograms();
         getGraduationYears();
+        return () => {
+            abortController.abort();
+        }
     }, []);
 
 

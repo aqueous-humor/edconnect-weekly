@@ -24,28 +24,34 @@ const Project = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const getProjectDB = async () => {
-        const projectInfoResponse = await fetch(`/api/projects/${ID}`);
-        const projectInfo = await projectInfoResponse.json();
-        const createdBy = projectInfo.createdBy;
-        const userInfoResponse = await fetch(`/api/users/${createdBy}`);
-        const userData = await userInfoResponse.json();
-        const FirstName = userData.firstname;
-        const LastName = userData.lastname;
-        const ProjectName = projectInfo.name;
-        const ProjectAbstract = projectInfo.abstract;
-        const ProjectAuthors = projectInfo.authors;
-        const ProjectTags = projectInfo.tags;
-        setProjectName(ProjectName);
-        setProjectAbstract(ProjectAbstract);
-        setProjectAuthors(ProjectAuthors);
-        setProjectTags(ProjectTags);
-        setFirstName(FirstName);
-        setLastName(LastName);
-    }
+    
 
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+        const getProjectDB = async () => {
+            const projectInfoResponse = await fetch(`/api/projects/${ID}`);
+            const projectInfo = await projectInfoResponse.json();
+            const createdBy = projectInfo.createdBy;
+            const userInfoResponse = await fetch(`/api/users/${createdBy}`, {signal: signal});
+            const userData = await userInfoResponse.json();
+            const FirstName = userData.firstname;
+            const LastName = userData.lastname;
+            const ProjectName = projectInfo.name;
+            const ProjectAbstract = projectInfo.abstract;
+            const ProjectAuthors = projectInfo.authors;
+            const ProjectTags = projectInfo.tags;
+            setProjectName(ProjectName);
+            setProjectAbstract(ProjectAbstract);
+            setProjectAuthors(ProjectAuthors);
+            setProjectTags(ProjectTags);
+            setFirstName(FirstName);
+            setLastName(LastName);
+        }
         getProjectDB();
+        return () => {
+            abortController.abort();
+        }
     }, [])
 
     return (

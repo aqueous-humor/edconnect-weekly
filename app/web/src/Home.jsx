@@ -12,13 +12,19 @@ import Layout from './shared/Layout';
 
 const Home = () => {
     const [projectList, setProjectList] = useState([]);
-    const getProjects = async () => {
-        const projects = await fetch('/api/projects');
-        const projectsJSON = await projects.json();
-        setProjectList(projectsJSON);
-    };
+    
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+        const getProjects = async () => {
+            const projects = await fetch('/api/projects', {signal: signal});
+            const projectsJSON = await projects.json();
+            setProjectList(projectsJSON);
+        };
         getProjects();
+        return () => {
+            abortController.abort();
+        }
     }, []);
 
     return (
