@@ -11,8 +11,7 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Layout from './shared/Layout';
-import { useCookies } from "react-cookie";
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Project = () => {
     let { id } = useParams();

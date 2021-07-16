@@ -69,7 +69,7 @@ const Signup = () => {
             <>
                 <Container className='border rounded p-5 mt-5'>
                     <h4 className="mt-2 mb-4 font-weight-bold">Sign up</h4>
-                    {status == 'error' &&
+                    {status === 'error' &&
                         <div className='alert alert-danger'>
                             {errors.map(error => {
                                 return (<p>{error}</p>)

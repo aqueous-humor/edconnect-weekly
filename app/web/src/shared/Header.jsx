@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, } from 'react';
 import {
     Nav,
     Navbar,
@@ -9,20 +9,27 @@ import {
 import { useCookies } from "react-cookie";
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+const Header = () => {
     let history = useHistory();
-    const [cookies, setCookies] = useCookies(['uid']);
-    const [userFirstName, setUserFirstname] = useState('');
+    
 
-    const updateNav = async () => {
-        const UserDb = await fetch('/api/users/' + cookies.uid + '');
-        const UserDbJSON = await UserDb.json();
-        const FirstName = UserDbJSON.firstname;
-        setUserFirstname(FirstName);
-    }
+    const [userFirstName, setUserFirstname] = useState('');
+    const [cookies, setCookies] = useCookies(['uid']);
+
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+        const updateNav = async () => {
+            const UserDb = await fetch('/api/users/' + cookies.uid + '', {signal: signal});
+            const UserDbJSON = await UserDb.json();
+            const FirstName = UserDbJSON.firstname;
+            setUserFirstname(FirstName);
+        }
         if (cookies.uid) {
             updateNav();
+        }
+        return () => {
+           abortController.abort();
         }
     }, [])
 
@@ -64,3 +71,5 @@ export default () => {
         </Navbar>
     )
 }
+
+export default Header;

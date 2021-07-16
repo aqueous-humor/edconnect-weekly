@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 import {
     Form,
     FormControl,
@@ -43,7 +43,7 @@ const Login = () => {
             <>
                 <Container className='border rounded p-5 mt-5'>
                     <h4 className="mt-2 mb-4 font-weight-bold">Login</h4>
-                    {status == 'error' &&
+                    {status === 'error' &&
                         <div className='alert alert-danger'>
                             <p>Invalid email/password</p>
                         </div>

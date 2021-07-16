@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { useCookies } from "react-cookie";
 
 function App() {
-  const [cookies, setCookies] = useCookies(['uid']);
+  const [cookies] = useCookies(['uid']);
   return (
     <Router>
       <Switch>

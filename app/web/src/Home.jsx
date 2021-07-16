@@ -47,7 +47,7 @@ const Home = () => {
                                         <p className='card-text'>{project.abstract}</p>
                                         <div>
                                             {project.tags.map((tag) => {
-                                                return (<a className='card-link' key={tag} href='#'>{tag}</a>)
+                                                return (<a className='card-link' key={tag} >{tag}</a>)
                                             })}
                                         </div>
                                     </div>
