@@ -45,7 +45,7 @@ const CreateProject = () => {
                     {status === 'error' &&
                         <div className='alert alert-danger'>
                             {errors.map(error => {
-                                return (<p>{error}</p>)
+                                return (<p key={error}>{error}</p>)
                             })}
                         </div>
                     }

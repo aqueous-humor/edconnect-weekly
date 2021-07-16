@@ -24,16 +24,16 @@ const Project = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    
+
 
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
         const getProjectDB = async () => {
-            const projectInfoResponse = await fetch(`/api/projects/${ID}`, {signal: signal});
+            const projectInfoResponse = await fetch(`/api/projects/${ID}`, { signal: signal });
             const projectInfo = await projectInfoResponse.json();
             const createdBy = projectInfo.createdBy;
-            const userInfoResponse = await fetch(`/api/users/${createdBy}`, {signal: signal});
+            const userInfoResponse = await fetch(`/api/users/${createdBy}`, { signal: signal });
             const userData = await userInfoResponse.json();
             const FirstName = userData.firstname;
             const LastName = userData.lastname;
@@ -96,7 +96,7 @@ const Project = () => {
                                 </Button>
                             </Form>
                             <div className='mt-4 border-top'>
-                                <p class="text-center mt-3">No comments added yet</p>
+                                <p className="text-center mt-3">No comments added yet</p>
                             </div>
                         </Col>
                         <Col>
@@ -105,12 +105,12 @@ const Project = () => {
                                 <h5 className='card-header'>Author(s)</h5>
                                 <div className='card-body'>
                                     {projectAuthors.map(author => {
-                                        return (<p className='card-text'>{author}</p>)
+                                        return (<p key={author} className='card-text'>{author}</p>)
                                     })}
                                 </div>
                                 <div className='card-footer'>
                                     {projectTags.map(tag => {
-                                        return (<Link className='card-link'>{tag}</Link>)
+                                        return (<a key={tag} className='card-link'>{tag}</a>)
                                     })}
                                 </div>
                             </div>
