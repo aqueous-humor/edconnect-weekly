@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Form,
     FormControl,
@@ -9,12 +9,21 @@ import {
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const CreateProject = () => {
     let history = useHistory();
 
+    const [cookies, setCookie] = useCookies(['uid'])
     const [status, setStatus] = useState('');
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        const cookie = cookies.uid;
+        if (!cookie) {
+            history.push('/login')
+        }
+    })
 
     const submitProject = async (event) => {
         event.preventDefault();

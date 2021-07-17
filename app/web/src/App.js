@@ -16,11 +16,7 @@ function App() {
         <Route path='/' exact={true} component={Home} />
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
-        <Route path='/projects/submit' component={CreateProject}>
-          {!cookies.uid && <Redirect to={{
-            pathname: "/login",
-          }} />}
-        </Route>
+        <Route path='/projects/submit' component={CreateProject}/>
         <Route path='/projects/:id' component={Project} />
       </Switch>
     </Router>
