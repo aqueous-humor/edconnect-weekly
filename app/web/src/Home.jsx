@@ -41,7 +41,7 @@ const Home = () => {
                     </div>
                 </Jumbotron>
                 <Container>
-                    <Row>
+                    <Row className='showcase'>
                         {projectList.map((project) => {
                             return (<Col key={project.name}>
                                 <div className='card'>

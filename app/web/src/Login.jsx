@@ -48,7 +48,7 @@ const Login = () => {
                             <p>Invalid email/password</p>
                         </div>
                     }
-                    <Form onSubmit={login}>
+                    <Form id='loginForm' onSubmit={login}>
                         <FormGroup>
                             <FormLabel>Email Address</FormLabel>
                             <FormControl type='email' placeholder='Enter Email' name='email' required />

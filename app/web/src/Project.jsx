@@ -9,14 +9,12 @@ import {
     Row,
     Col,
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Layout from './shared/Layout';
 import { useParams } from 'react-router-dom';
 
 const Project = () => {
-    let { id } = useParams();
-    let ID = id.slice(1);
-
+    const { id } = useParams();
+    const ID = id.slice(1);
     const [projectName, setProjectName] = useState('');
     const [projectAbstract, setProjectAbstract] = useState('');
     const [projectAuthors, setProjectAuthors] = useState([]);
@@ -52,18 +50,18 @@ const Project = () => {
         return () => {
             abortController.abort();
         }
-    }, [])
+    }, [ID])
 
     return (
         <Layout>
-            <>
+            <main>
                 <Container className='border rounded p-3 mt-5'>
-                    <h4>{projectName}</h4>
+                    <h4 className='project_name'>{projectName}</h4>
                     <Container className='bg-light mt-4'>
                         <Row className='align-items-center'>
                             <Col className='text-center mt-3'>
                                 <h6>Created By</h6>
-                                <p>{firstName}{' '}{lastName}</p>
+                                <p className='project_author'>{firstName}{' '}{lastName}</p>
                             </Col>
                             <Col className='text-center mt-3'>
                                 <h6>Date Created</h6>
@@ -85,7 +83,7 @@ const Project = () => {
                     <Row>
                         <Col>
                             <h5 className='border-bottom py-3'>Project Abstract</h5>
-                            <p className='mt-4 mb-5'>{projectAbstract}</p>
+                            <p className='project_abstract mt-4 mb-5'>{projectAbstract}</p>
                             <Form>
                                 <FormGroup>
                                     <FormLabel><strong>Comments</strong></FormLabel>
@@ -103,14 +101,14 @@ const Project = () => {
                             <h5 className='border-bottom py-3'>Project Details</h5>
                             <div className='card'>
                                 <h5 className='card-header'>Author(s)</h5>
-                                <div className='card-body'>
+                                <div className='project_authors card-body'>
                                     {projectAuthors.map(author => {
                                         return (<p key={author} className='card-text'>{author}</p>)
                                     })}
                                 </div>
-                                <div className='card-footer'>
+                                <div className='project_tags card-footer'>
                                     {projectTags.map(tag => {
-                                        return (<a key={tag} className='card-link'>{tag}</a>)
+                                        return (<a key={tag} href='#' className='card-link'>{tag}</a>)
                                     })}
                                 </div>
                             </div>
@@ -123,7 +121,7 @@ const Project = () => {
                         </Col>
                     </Row>
                 </Container>
-            </>
+            </main>
         </Layout>
     )
 

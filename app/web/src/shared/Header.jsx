@@ -31,7 +31,7 @@ const Header = () => {
         return () => {
            abortController.abort();
         }
-    }, [])
+    }, [cookies.uid])
 
     const logout = () => {
         history.push('/');
@@ -58,8 +58,8 @@ const Header = () => {
             </Nav>
             {cookies.uid ? (
                 <Nav className='justify-content-end'>
-                    <Nav.Link onClick={logout}>Logout</Nav.Link>
-                    <Navbar.Text>Hi,{' '}{userFirstName}</Navbar.Text>
+                    <Nav.Link id='logout' onClick={logout}>Logout</Nav.Link>
+                    <Navbar.Text id='username'>Hi,{' '}{userFirstName}</Navbar.Text>
 
                 </Nav>
             ) : (

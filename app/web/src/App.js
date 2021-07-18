@@ -5,11 +5,10 @@ import Signup from './Signup';
 import Login from './Login';
 import CreateProject from './CreateProject';
 import Project from './Project';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { useCookies } from "react-cookie";
+import { BrowserRouter as Router, Switch, Route, } from 'react-router-dom';
+
 
 function App() {
-  const [cookies] = useCookies(['uid']);
   return (
     <Router>
       <Switch>

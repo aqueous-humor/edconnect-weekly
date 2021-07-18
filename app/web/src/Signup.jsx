@@ -83,7 +83,7 @@ const Signup = () => {
                             })}
                         </div>
                     }
-                    <Form onSubmit={registerUser}>
+                    <Form id='signupForm' onSubmit={registerUser}>
                         <Form.Row>
                             <FormGroup as={Col} controlId='firstname'>
                                 <FormLabel>First Name</FormLabel>

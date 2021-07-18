@@ -14,7 +14,7 @@ import { useCookies } from 'react-cookie';
 const CreateProject = () => {
     let history = useHistory();
 
-    const [cookies, setCookie] = useCookies(['uid'])
+    const [cookies] = useCookies(['uid'])
     const [status, setStatus] = useState('');
     const [errors, setErrors] = useState([]);
 
@@ -58,7 +58,7 @@ const CreateProject = () => {
                             })}
                         </div>
                     }
-                    <Form onSubmit={submitProject} noValidate>
+                    <Form id='createProjectForm' onSubmit={submitProject} noValidate>
                         <FormGroup>
                             <FormLabel>Project Name</FormLabel>
                             <FormControl type='text' placeholder='Enter Project Name' name='name' required />
