@@ -56,12 +56,12 @@ const Project = () => {
         <Layout>
             <main>
                 <Container className='border rounded p-3 mt-5'>
-                    <h4 className='project_name'>{projectName}</h4>
+                    <h4 id='project_name'>{projectName}</h4>
                     <Container className='bg-light mt-4'>
                         <Row className='align-items-center'>
                             <Col className='text-center mt-3'>
                                 <h6>Created By</h6>
-                                <p className='project_author'>{firstName}{' '}{lastName}</p>
+                                <p id='project_author'>{firstName}{' '}{lastName}</p>
                             </Col>
                             <Col className='text-center mt-3'>
                                 <h6>Date Created</h6>
@@ -83,7 +83,7 @@ const Project = () => {
                     <Row>
                         <Col>
                             <h5 className='border-bottom py-3'>Project Abstract</h5>
-                            <p className='project_abstract mt-4 mb-5'>{projectAbstract}</p>
+                            <p className='mt-4 mb-5' id='project_abstract'>{projectAbstract}</p>
                             <Form>
                                 <FormGroup>
                                     <FormLabel><strong>Comments</strong></FormLabel>
@@ -101,12 +101,12 @@ const Project = () => {
                             <h5 className='border-bottom py-3'>Project Details</h5>
                             <div className='card'>
                                 <h5 className='card-header'>Author(s)</h5>
-                                <div className='project_authors card-body'>
+                                <div className='card-body' id='project_authors'>
                                     {projectAuthors.map(author => {
                                         return (<p key={author} className='card-text'>{author}</p>)
                                     })}
                                 </div>
-                                <div className='project_tags card-footer'>
+                                <div className='card-footer' id='project_tags'>
                                     {projectTags.map(tag => {
                                         return (<a key={tag} href='#' className='card-link'>{tag}</a>)
                                     })}
