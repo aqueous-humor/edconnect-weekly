@@ -6,39 +6,54 @@ import {
     FormControl,
     Button,
 } from 'react-bootstrap';
-import { useCookies } from "react-cookie";
 import { useHistory } from 'react-router-dom';
 
 const Header = () => {
     let history = useHistory();
-    
+
 
     const [userFirstName, setUserFirstname] = useState('');
-    const [cookies, setCookies] = useCookies(['uid']);
+
+    const setCookie = (name, value, duration) => {
+        let date = new Date();
+        date.setTime(date.getTime() + (duration * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    const getCookie = (name) => {
+        let cookieDecoded = decodeURIComponent(document.cookie);
+        let cookiesArr = cookieDecoded.split(';');
+        for (let i = 0; i < cookiesArr.length; i++) {
+            let cookie = cookiesArr[i].split('=');
+            if (name === cookie[0].trim()) {
+                return cookie[1];
+            }
+        }
+        return '';
+    }
 
     useEffect(() => {
+        const cookie = getCookie('uid');
         const abortController = new AbortController();
         const signal = abortController.signal;
         const updateNav = async () => {
-            const UserDb = await fetch('/api/users/' + cookies.uid + '', {signal: signal});
+            const UserDb = await fetch('/api/users/' + cookie + '', { signal: signal });
             const UserDbJSON = await UserDb.json();
             const FirstName = UserDbJSON.firstname;
             setUserFirstname(FirstName);
         }
-        if (cookies.uid) {
+        if (cookie !== '') {
             updateNav();
         }
         return () => {
-           abortController.abort();
+            abortController.abort();
         }
-    }, [cookies.uid])
+    }, [])
 
     const logout = () => {
         history.push('/');
-        setCookies('uid', '', {
-            path: '/',
-            expires: (new Date(Date.now())),
-        })
+        setCookie('uid', '', -1)
     }
 
     return (
@@ -56,7 +71,7 @@ const Header = () => {
                     <Nav.Link href='/projects/submit'>Create Project</Nav.Link>
                 </Nav>
             </Nav>
-            {cookies.uid ? (
+            {getCookie('uid') !== '' ? (
                 <Nav className='justify-content-end'>
                     <Nav.Link id='logout' onClick={logout}>Logout</Nav.Link>
                     <Navbar.Text id='username'>Hi,{' '}{userFirstName}</Navbar.Text>

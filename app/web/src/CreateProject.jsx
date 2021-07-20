@@ -9,18 +9,28 @@ import {
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
 import { useHistory } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 const CreateProject = () => {
     let history = useHistory();
 
-    const [cookies] = useCookies(['uid'])
     const [status, setStatus] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const getCookie = (name) => {
+        let cookieDecoded = decodeURIComponent(document.cookie);
+        let cookiesArr = cookieDecoded.split(';');
+        for (let i = 0; i < cookiesArr.length; i++) {
+            let cookie = cookiesArr[i].split('=');
+            if (name === cookie[0].trim()) {
+                return cookie[1];
+            }
+        }
+        return '';
+    }
+
     useEffect(() => {
-        const cookie = cookies.uid;
-        if (!cookie) {
+        const cookie = getCookie('uid');
+        if (cookie === '') {
             history.push('/login')
         }
     })

@@ -9,7 +9,6 @@ import {
     Container,
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
-import { useCookies } from "react-cookie";
 import { useHistory } from 'react-router-dom';
 
 
@@ -20,8 +19,13 @@ const Signup = () => {
     const [graduationYearList, setGraduationYearList] = useState([]);
     const [status, setStatus] = useState('');
     const [errors, setErrors] = useState([]);
-    const [cookies, setCookies] = useCookies(['uid']);
 
+    const setCookie = (name, value, duration) => {
+        let date = new Date();
+        date.setTime(date.getTime() + (duration * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
 
     const registerUser = async (event) => {
         event.preventDefault();
@@ -37,28 +41,26 @@ const Signup = () => {
         const Errors = RegisterResponseJSON.errors;
         const Data = RegisterResponseJSON.data;
         if (Status !== 'error') {
-            setCookies('uid', Data.id, {
-                path: '/',
-            })
+            setCookie('uid', Data.id, 7)
             history.push('/')
         }
         setStatus(Status);
         setErrors(Errors);
     }
 
-    
-    
+
+
 
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
         const getPrograms = async () => {
-            const programs = await fetch('/api/programs', {signal: signal});
+            const programs = await fetch('/api/programs', { signal: signal });
             const programsJSON = await programs.json();
             setProgramList(programsJSON);
         };
         const getGraduationYears = async () => {
-            const graduationYears = await fetch('/api/graduationYears', {signal: signal});
+            const graduationYears = await fetch('/api/graduationYears', { signal: signal });
             const graduationYearsJSON = await graduationYears.json();
             setGraduationYearList(graduationYearsJSON);
         };

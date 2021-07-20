@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, } from 'react';
 import {
     Form,
     FormControl,
@@ -8,14 +8,19 @@ import {
     Container,
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
-import { useCookies } from "react-cookie";
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
     let history = useHistory();
 
     const [status, setStatus] = useState('');
-    const [cookies, setCookies] = useCookies(['uid']);
+
+    const setCookie = (name, value, duration) => {
+        let date = new Date();
+        date.setTime(date.getTime() + (duration * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
 
     const login = async (event) => {
         event.preventDefault();
@@ -30,9 +35,7 @@ const Login = () => {
       const Status = loginResponseJSON.status;
       const Data = loginResponseJSON.data;
       if (Status !== 'error') {
-        setCookies('uid', Data.id, {
-            path: '/',
-        })
+        setCookie('uid', Data.id, 7)
         history.push('/')
     }
       setStatus(Status);
