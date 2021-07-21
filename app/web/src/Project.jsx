@@ -14,7 +14,6 @@ import { useParams } from 'react-router-dom';
 
 const Project = () => {
     const { id } = useParams();
-    const ID = id.slice(1);
     const [projectName, setProjectName] = useState('');
     const [projectAbstract, setProjectAbstract] = useState('');
     const [projectAuthors, setProjectAuthors] = useState([]);
@@ -26,7 +25,7 @@ const Project = () => {
 
     useEffect(() => {
         const getProjectDB = async () => {
-            const projectInfoResponse = await fetch(`/api/projects/${ID}`);
+            const projectInfoResponse = await fetch(`/api/projects/${id}`);
             const projectInfo = await projectInfoResponse.json();
             const createdBy = projectInfo.createdBy;
             const userInfoResponse = await fetch(`/api/users/${createdBy}`);
@@ -45,7 +44,7 @@ const Project = () => {
             setLastName(LastName);
         }
         getProjectDB();
-    }, [ID])
+    }, [id])
 
     return (
         <Layout>

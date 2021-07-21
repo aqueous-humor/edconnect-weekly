@@ -47,7 +47,7 @@ const Home = () => {
                                 <div className='card'>
                                     <div className='card-body'>
                                         <h5 className='card-title'>
-                                            <Link className='card-link' to={`projects/:${project.id}`}>{project.name}</Link>
+                                            <Link className='card-link' to={`projects/${project.id}`}>{project.name}</Link>
                                         </h5>
                                         <h6 className='card-subtitle text-muted my-2'>{project.authors}</h6>
                                         <p className='card-text'>{project.abstract}</p>
