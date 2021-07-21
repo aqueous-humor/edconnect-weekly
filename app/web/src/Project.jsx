@@ -51,7 +51,11 @@ const Project = () => {
         <Layout>
             <main>
                 <Container className='border rounded p-3 mt-5'>
-                    <h4 id='project_name'>{projectName}</h4>
+                    <Container>
+                        <Row>
+                            <h4 id='project_name'>{projectName}</h4>
+                        </Row>
+                    </Container>
                     <Container className='bg-light mt-4'>
                         <Row className='align-items-center'>
                             <Col className='text-center mt-3'>
