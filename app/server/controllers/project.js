@@ -5,11 +5,11 @@ const user = require('../services/user');
 
 router.get('/projects/submit', (req, res) => {
     const user = req.session.user;
-    if (!user) {
-        res.redirect(303, '/login');
-    }
     const errors = req.flash('error');
     res.render('CreateProject', { errors, user });
+    if (!user) {
+        res.redirect('/login');
+    }
 })
 
 router.post('/projects/submit', (req, res) => {
