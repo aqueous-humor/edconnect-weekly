@@ -12,11 +12,18 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-    const formData = JSON.stringify(req.body);
-    const formDataJSON = JSON.parse(formData);
-    const newUser = create(formDataJSON);
+    const formData = {
+        firstname: req.body.firstName,
+        lastname: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        program: req.body.program,
+        matricNumber: req.body.matricNumber,
+        graduationYear: req.body.graduationYear,
+    }
+    const newUser = create(formData);
     if (newUser[0] === true) {
-        req.session.user = formDataJSON;
+        req.session.user = formData;
         res.redirect('/');
     } else {
         const errors = newUser[1];

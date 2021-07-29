@@ -29,11 +29,11 @@ const Signup = ({ programs, gradYear, errors, user }) => {
                         <Form.Row>
                             <FormGroup as={Col} controlId='firstname'>
                                 <FormLabel>First Name</FormLabel>
-                                <FormControl type='text' placeholder='First Name' name='firstname' required />
+                                <FormControl type='text' placeholder='First Name' name='firstName' required />
                             </FormGroup>
                             <FormGroup as={Col} controlId='lastname'>
                                 <FormLabel>Last Name</FormLabel>
-                                <FormControl type='text' placeholder='Last Name' name='lastname' required />
+                                <FormControl type='text' placeholder='Last Name' name='lastName' required />
                             </FormGroup>
                         </Form.Row>
                         <Form.Row>
