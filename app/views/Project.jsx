@@ -30,11 +30,11 @@ const Project = ({ project, createdBy, user }) => {
                             </Col>
                             <Col className='text-center mt-3'>
                                 <h6>Date Created</h6>
-                                <p>2020-08-30</p>
+                                <p>{new Date(project.createdAt).toLocaleDateString()}</p>
                             </Col>
                             <Col className='text-center mt-3'>
                                 <h6>Last Updated</h6>
-                                <p>2020-08-30</p>
+                                <p>{ new Date(project.updatedAt).toLocaleDateString()}</p>
                             </Col>
                             <Col className='text-center'>
                                 <Button>

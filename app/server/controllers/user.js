@@ -8,10 +8,10 @@ router.get('/signup', (req, res) => {
     const programs = getPrograms();
     const gradYear = getGradYears();
     const errors = req.flash("error");
-    res.render('Signup', { programs: programs, gradYear: gradYear, errors, user: req.session.user });
+    res.render('Signup', { programs: programs, gradYear: gradYear, errors: errors, user: req.session.user });
 })
 
-router.post('/signup', (req, res) => {
+router.post('/signup', async (req, res) => {
     const formData = {
         firstname: req.body.firstName,
         lastname: req.body.lastName,
@@ -21,9 +21,9 @@ router.post('/signup', (req, res) => {
         matricNumber: req.body.matricNumber,
         graduationYear: req.body.graduationYear,
     }
-    const newUser = create(formData);
+    const newUser = await create(formData);
     if (newUser[0] === true) {
-        req.session.user = formData;
+        req.session.user = newUser[1];
         res.redirect('/');
     } else {
         const errors = newUser[1];
@@ -37,8 +37,8 @@ router.get('/login', (req, res) => {
     res.render('Login', { errors, user: req.session.user });
 })
 
-router.post('/login', (req, res) => {
-    const logUser = authenticate(req.body.email, req.body.password);
+router.post('/login', async (req, res) => {
+    const logUser = await authenticate(req.body.email, req.body.password);
     if (logUser[0] === true) {
         req.session.user = logUser[1];
         res.redirect('/');

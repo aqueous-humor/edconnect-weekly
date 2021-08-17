@@ -3,9 +3,9 @@ const { getAll } = require('../services/project');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     const user = req.session.user;
-    const projectList = getAll();
+    const projectList = await getAll();
     res.render('Home', { projectList, user });
 })
 

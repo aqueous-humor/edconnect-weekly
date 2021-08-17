@@ -7,6 +7,7 @@ import {
     Button,
     Col,
     Container,
+    Alert
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
 
@@ -20,7 +21,7 @@ const Signup = ({ programs, gradYear, errors, user }) => {
                     <h4 className="mt-2 mb-4 font-weight-bold">Sign up</h4>
                     {errors.length > 0 &&
                         <div className='alert alert-danger'>
-                            {errors.map(error => {
+                            {errors.map((error) => {
                                 return (<p key={error}>{error}</p>)
                             })}
                         </div>
