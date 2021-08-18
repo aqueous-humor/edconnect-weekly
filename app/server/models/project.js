@@ -7,7 +7,7 @@ const ProjectSchema = new Schema(
         abstract: { type: String, required: true },
         authors: { type: [String], required: true, unique: true },
         tags: { type: [String], required: false },
-        createdBy: { type: mongoose.ObjectId, required: true, ref: user }
+        createdBy: { type: mongoose.ObjectId, required: true }
     },
     { timestamps: true }
 );

@@ -29,7 +29,7 @@ const create = async ({
 /* Return project with specified id */
 const getById = async (id) => {
   try {
-    const project = await Project.findById(id).populate('createdBy');
+    const project = await Project.findById(id);
     return project;
   } catch (error) {
     return helper.translateError(error);

@@ -32,7 +32,7 @@ router.post('/projects/submit', async (req, res) => {
 
 router.get('/project/:id', async (req, res) => {
     const id = req.params.id;
-    const project =  await getById(id);
+    const project = await getById(id);
     const createdBy = await user.getById(project.createdBy);
     res.render('Project', { project, createdBy, user: req.session.user })
 })
