@@ -12,6 +12,19 @@ const UserSchema = new Schema(
         matricNumber: { type: String, required: true },
         program: { type: String, required: false },
         graduationYear: { type: String, required: false }
+
+    },
+    { timestamps: true }
+)
+
+const NotificationSchema = new Schema(
+    {
+        //The notification message
+        message: { type: String, required: true },
+        //The user who the message is for
+        forUser: { type: Schema.Types.ObjectId, required: true, ref: 'users' },
+        //reflects whether the notification has been read or not
+        isRead: { type: Boolean, default: false }
     },
     { timestamps: true }
 )
@@ -26,13 +39,17 @@ UserSchema.methods.setPassword = function (password) {
     } else {
         throw new Error('Password should have at least 7 characters');
     }
-    
+
 }
 
 UserSchema.methods.validPassword = function (password) {
-   return this.password === hash(password, this.salt);
+    return this.password === hash(password, this.salt);
 }
 
 const User = mongoose.model("users", UserSchema);
+const Notification = mongoose.model('notifications', NotificationSchema);
 
-module.exports = User;
+module.exports = {
+    User,
+    Notification
+};

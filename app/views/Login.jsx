@@ -12,7 +12,7 @@ import Layout from './shared/Layout';
 const Login = ({ user, errors }) => {
 
     return (
-        <Layout user={user}>
+        <Layout user={user} >
             <>
                 <Container className='border rounded p-5 mt-5'>
                     <h4 className="mt-2 mb-4 font-weight-bold">Login</h4>

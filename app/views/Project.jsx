@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Button,
-    Form,
-    FormGroup,
-    FormLabel,
-    FormControl,
     Container,
     Row,
     Col,
 } from 'react-bootstrap';
 import Layout from './shared/Layout';
+import CommentBox from './comment_section/CommentBox';
 
-const Project = ({ project, createdBy, user }) => {
+
+const Project = ({ project, createdBy, user, guest }) => {
 
     return (
         <Layout user={user}>
@@ -34,12 +32,12 @@ const Project = ({ project, createdBy, user }) => {
                             </Col>
                             <Col className='text-center mt-3'>
                                 <h6>Last Updated</h6>
-                                <p>{ new Date(project.updatedAt).toLocaleDateString()}</p>
+                                <p>{new Date(project.updatedAt).toLocaleDateString()}</p>
                             </Col>
                             <Col className='text-center'>
                                 <Button>
                                     Edit Project
-                            </Button>
+                                </Button>
                             </Col>
                         </Row>
                     </Container>
@@ -49,18 +47,12 @@ const Project = ({ project, createdBy, user }) => {
                         <Col>
                             <h5 className='border-bottom py-3'>Project Abstract</h5>
                             <p className='mt-4 mb-5' id='project_abstract'>{project.abstract}</p>
-                            <Form>
-                                <FormGroup>
-                                    <FormLabel><strong>Comments</strong></FormLabel>
-                                    <FormControl as='textarea' type='text' name='abstract' placeholder='Leave a comment' required />
-                                </FormGroup>
-                                <Button variant='primary' type='submit'>
-                                    Submit
-                                </Button>
-                            </Form>
-                            <div className='mt-4 border-top'>
-                                <p className="text-center mt-3">No comments added yet</p>
-                            </div>
+                            <CommentBox
+                                projectId={project._id}
+                                user={user}
+                                guest={guest}
+                                createdBy={createdBy}
+                            />
                         </Col>
                         <Col>
                             <h5 className='border-bottom py-3'>Project Details</h5>

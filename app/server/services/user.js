@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const { User } = require('../models/user');
 const helper = require('../models/mongo_helper');
 
 /* Creates new user */
@@ -60,6 +60,8 @@ const getAll = async () => {
     return helper.translateError(error);
   }
 };
+
+
 
 module.exports = {
   create,

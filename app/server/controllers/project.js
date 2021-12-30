@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const { create, getById } = require('../services/project');
 const user = require('../services/user');
+const { getAllProjectComments } = require('../services/comment');
+const crypto = require('crypto');
 
 router.get('/projects/submit', (req, res) => {
-    const user = req.session.user;
     const errors = req.flash('error');
-    res.render('CreateProject', { errors, user });
+    res.render('CreateProject', { errors, user: req.session.user });
     if (!user) {
         res.redirect('/login');
     }
 })
-
 router.post('/projects/submit', async (req, res) => {
     const formData = {
         name: req.body.name,
@@ -34,7 +34,7 @@ router.get('/project/:id', async (req, res) => {
     const id = req.params.id;
     const project = await getById(id);
     const createdBy = await user.getById(project.createdBy);
-    res.render('Project', { project, createdBy, user: req.session.user })
+    res.render('Project', { project, createdBy, user: req.session.user, guest: req.sessionID, })
 })
 
 module.exports = router;

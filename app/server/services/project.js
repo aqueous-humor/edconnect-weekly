@@ -7,7 +7,7 @@ const create = async ({
   abstract,
   authors,
   tags,
-  createdBy
+  createdBy,
 }) => {
   try {
     const project = new Project({
@@ -15,7 +15,7 @@ const create = async ({
       abstract,
       authors,
       tags,
-      createdBy
+      createdBy,
     });
     const validProject = await project.save();
     if (validProject) {
@@ -44,6 +44,7 @@ const getAll = async () => {
     return helper.translateError(error);
   }
 };
+
 
 module.exports = {
   getAll,

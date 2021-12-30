@@ -7,6 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const app = express();
 const SERVER_PORT = process.env.SERVER_PORT;
 
@@ -25,12 +26,15 @@ const SERVER_PORT = process.env.SERVER_PORT;
     }));
 
     app.use(session({
+        store: MongoStore.create({
+            mongoUrl: process.env.MONGODB_URI
+        }),
         secret: 'secret',
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7
+            maxAge: 251767490995652  //1000 * 60 * 60 * 24 * 7
         },
         resave: true,
-        saveUninitialized: false
+        saveUninitialized: false,
     }));
 
     app.use(flash());
@@ -38,16 +42,18 @@ const SERVER_PORT = process.env.SERVER_PORT;
     app.use("/", require("./controllers/user"));
     app.use("/", require("./controllers/home"));
     app.use("/", require("./controllers/project"));
+    app.use("/", require("./controllers/comment"));
+    //app.use("/", require("./controllers/notification"));
     app.use(express.static('public'));
 
     app.listen(SERVER_PORT, () => console.log('Server listening on port ' + SERVER_PORT));
     mongoose.set('bufferCommands', false);
-    mongoose.connect(
+    await mongoose.connect( //added await because of problems arising from slow internet connection
         process.env.MONGODB_URI,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true,
+            /**useCreateIndex: true,**/ //Mongoose 6.0 does not support useCreateIndex
         },
         (err) => {
             if (err) {

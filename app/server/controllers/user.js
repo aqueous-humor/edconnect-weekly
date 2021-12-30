@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { getPrograms, getGradYears } = require('../services/school');
 const { create, authenticate } = require('../services/user');
+const {
+    getUserNotifications
+} = require('../services/notification');
 
 
 router.get('/signup', (req, res) => {
@@ -23,7 +26,7 @@ router.post('/signup', async (req, res) => {
     }
     const newUser = await create(formData);
     if (newUser[0] === true) {
-        req.session.user = newUser[1];
+        //adding notifications property to the user session on successful registration
         res.redirect('/');
     } else {
         const errors = newUser[1];
@@ -40,7 +43,8 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     const logUser = await authenticate(req.body.email, req.body.password);
     if (logUser[0] === true) {
-        req.session.user = logUser[1];
+        const userNotifs = await getUserNotifications(logUser[1]._id);
+        req.session.user = logUser[1];     //adding notifications property to the session on successful login  
         res.redirect('/');
     } else {
         const errors = logUser[1];

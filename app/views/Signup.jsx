@@ -15,7 +15,7 @@ import Layout from './shared/Layout';
 const Signup = ({ programs, gradYear, errors, user }) => {
 
     return (
-        <Layout user={user}>
+        <Layout user={user} >
             <>
                 <Container className='border rounded p-5 mt-5'>
                     <h4 className="mt-2 mb-4 font-weight-bold">Sign up</h4>
