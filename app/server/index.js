@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const app = express();
-const SERVER_PORT = process.env.SERVER_PORT;
+const SERVER_PORT = process.env.PORT || 4000;
 
 (async () => {
     await register(app);
