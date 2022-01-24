@@ -11,18 +11,19 @@ import {
 import {
     FaBell,
 } from 'react-icons/fa';
-// import NotificationIcon from './NotificationIcon';
+import axios from 'axios';
 
 const Header = ({ user }) => {
-    // const [unreadNotifs, setUnreadNotifs] = useState(notifications.filter((notification) => {
-    //     return notification.isRead == false;
-    // }));
+    const [unreadCount, setUnreadCount] = useState()
 
-    //useEffect(() => {
-    // notifications.filter((notification) => {
-    //     return notification.isRead == false;
-    // })
-    // }, [])
+    useEffect(() => {
+        async function getUnreadCount() {
+            const getUnread = await axios.get(`/notifications/unread/${user._id}`);
+            const data = getUnread.data
+            setUnreadCount(data.unreadNotifs);
+        }
+        getUnreadCount()
+    }, [])
 
     return (
         <Navbar bg='primary' variant='dark' className='justify-content-between'>
@@ -41,19 +42,18 @@ const Header = ({ user }) => {
             </Nav>
             {user ? (
                 <Nav className='justify-content-end'>
-                    <Nav.Link id='logout' href='/logout'>Logout</Nav.Link>
-                    <Navbar.Text id='username'>Hi,{' '}{user.firstname}</Navbar.Text>
-                    {/* <Link href='#'>
+                    <Nav.Link href={`/notifications/${user._id}`}>
                         <FaBell />
-                        {unreadNotifs.length > 0 ? (
+                        {unreadCount > 0 ? (
                             <span>
                                 <Badge pill variant='danger'>
-                                    {unreadNotifs.length}
+                                    {unreadCount}
                                 </Badge>
                             </span>
                         ) : null}
-                    </Link> */}
-                    {/* <NotificationIcon user={user} unreadNotifs={unreadNotifs.length} /> */}
+                    </Nav.Link>
+                    <Nav.Link id='logout' href='/logout'>Logout</Nav.Link>
+                    <Navbar.Text id='username'>Hi,{' '}{user.firstname}</Navbar.Text>
                 </Nav>
             ) : (
                 <Nav>

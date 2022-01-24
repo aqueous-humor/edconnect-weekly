@@ -13,7 +13,7 @@ const CommentDelete = ({ id, type, deleteComment }) => {
 
     const onClickDel = async (event) => {
         event.preventDefault();
-        const delReq = await axios.delete(`/project/comment/delete/${id}`, {type});
+        const delReq = await axios.delete(`/project/comment/delete/${id}`);
         const resData = delReq.data;
         if (resData.length == undefined) { //i.e if it is an object, not an array. This tells us that no error was caught from the delComment service.
             if (resData.deletedCount == 1) {

@@ -115,20 +115,15 @@ const removeLike = async (id, userId) => {
 /**
  * Removes a document from the comments collection
  * @param {string} id - The unique id of the comment to be deleted from the collection 
- * @param {string} type - The type of comment to be deleted
  * @returns {(Object|Array)} The DeleteResult object returned from the delete opreation, or an array of translated errors in the event of failure
  */
-const delComment = async (id, type) => {
+const delComment = async (id) => {
     try {
         const replies = await Comment.find({ parentId: id });
-        if (type == 'parent' && replies.length > 0) { //when deleting parent comments, we also want to also delete their children, as there is no point keeping them
-            const delChildren = await Comment.deleteMany({ parentId: id });
-            if (delChildren) {
-                return await Comment.deleteOne({ _id: id })
-            }
-        } else {
-            return await Comment.deleteOne({ _id: id })
-        }
+        if (replies.length > 0) { //when deleting parent comments, we also want to also delete their children, as there is no point keeping them
+            await Comment.deleteMany({ parentId: id });
+        } 
+        return await Comment.deleteOne({ _id: id })
     } catch (error) {
         return helper.translateError(error);
     }

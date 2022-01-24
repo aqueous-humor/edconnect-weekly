@@ -36,9 +36,50 @@ router.post('/project/comment/:id', async (req, res) => {
         parentId: req.body.parentId
     }
     const comment = await createComment(formData);
-    const project = await getById(req.params.id);
-    const createdBy = await user.getById(project.createdBy);
+
     if (comment[0] === true) {
+        const project = await getById(req.params.id);
+        const createdBy = project.createdBy;
+        const createdByUserDb = await user.getById(createdBy)
+        const commentAuthor = await user.getById(comment[1].author[1]);
+        let parentComment;
+        let parentCommentAuthor;
+        const parentId = comment[1].parentId;
+        if (parentId) {
+            parentComment = await getCommentById(comment[1].parentId);
+            parentCommentAuthor = await user.getById(parentComment.author[1]);
+        }
+        //notification logic for the project owner
+        if (comment[1].author[1] !== createdBy) {
+            if (comment[1].type == 'parent') {
+                await addNotification({
+                    forUser: createdBy,
+                    message: `${comment[1].author[0]} commented on your project`,
+                    projectId: req.params.id
+                })
+            } else if (comment[1].type == 'child' && parentComment.author[1] == createdBy) {
+                await addNotification({
+                    forUser: createdBy,
+                    message: `${comment[1].author[0]} replied your comment on your project`,
+                    projectId: req.params.id
+                })
+            } else {
+                await addNotification({
+                    forUser: createdBy,
+                    message: `${comment[1].author[0]} replied ${parentComment.author[0]}'s comment on your project`,
+                    projectId: req.params.id
+                })
+            }
+        }
+
+        //notification logic for user
+        if (parentCommentAuthor !== undefined && parentComment.author[1] !== createdBy) {
+            await addNotification({
+                forUser: parentComment.author[1],
+                message: `${comment[1].author[0]} replied your comment on ${createdByUserDb.firstname} ${createdByUserDb.lastname}'s project`,
+                projectId: req.params.id
+            })
+        }
         //We do not want to send a notification if the author of a comment is also the author of the project
         // if (comment[1].author[1] !== createdBy._id) {
         //     if (comment[1].type == 'parent') {
@@ -69,7 +110,7 @@ router.post('/project/comment/:id', async (req, res) => {
 
 // receives delete request from CommentDelete and sends back back the DeleteResult object
 router.delete('/project/comment/delete/:id', async (req, res) => {
-    const delComm = await delComment(req.params.id, req.body.type);
+    const delComm = await delComment(req.params.id);
     res.send(delComm);
 })
 
@@ -81,6 +122,27 @@ router.post('/project/comment/edit/:id', async (req, res) => {
 
 router.post('/project/comment/like/:id', async (req, res) => {
     const like = await addLike(req.params.id, req.body.userId);
+    const comment = await getCommentById(req.params.id);
+    const project = await getById(comment.projectId);
+    const createdByUserDb = await user.getById(project.createdBy)
+    const commentAuthor = comment.author[1];
+    const commentAuthorUserDb = await user.getById(commentAuthor);
+    const likeAuthorUserDb = await user.getById(req.body.userId);
+    if (req.body.userId !== project.createdBy) {
+        if (like.acknowledged == true && commentAuthorUserDb && project.createdBy !== commentAuthor) {
+            await addNotification({
+                forUser: commentAuthor,
+                message: `${likeAuthorUserDb.firstname} ${likeAuthorUserDb.lastname} liked your ${comment.type == 'parent' ? 'comment' : 'reply'} on ${createdByUserDb.firstname} ${createdByUserDb.lastname}'s project `,
+                projectId: comment.projectId
+            })
+        } else if (like.acknowledged == true && commentAuthorUserDb && project.createdBy === commentAuthor) {
+            await addNotification({
+                forUser: commentAuthor,
+                message: `${likeAuthorUserDb.firstname} ${likeAuthorUserDb.lastname} liked your ${comment.type == 'parent' ? 'comment' : 'reply'} on your project`,
+                projectId: comment.projectId
+            })
+        }
+    }
     res.send(like)
 })
 

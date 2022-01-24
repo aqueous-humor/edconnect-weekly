@@ -24,7 +24,9 @@ const NotificationSchema = new Schema(
         //The user who the message is for
         forUser: { type: Schema.Types.ObjectId, required: true, ref: 'users' },
         //reflects whether the notification has been read or not
-        isRead: { type: Boolean, default: false }
+        isRead: { type: Boolean, default: false },
+        //the project id of the comment generating the notification
+        projectId: { type: Schema.Types.ObjectId, ref: 'projects' }
     },
     { timestamps: true }
 )

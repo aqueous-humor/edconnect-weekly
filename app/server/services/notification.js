@@ -5,16 +5,19 @@ const helper = require('../models/mongo_helper');
  * Creates a new notification document
  * @param {string} forUser - The unique id of the user the notification is for.
  * @param {string} message - The body of the notification
+ * @param {string} projectId - The project id of the comment generating the notification
  * @returns {(Boolean|Array)} Returns true if successful, and an array with elements false(index 0) and the translated error(index 1) if unsuccessful
  */
 const addNotification = async ({
     forUser,
-    message
+    message,
+    projectId,
 }) => {
     try {
         const notification = new Notification({
             forUser,
-            message
+            message,
+            projectId,
         })
         const validNotification = await notification.save();
         if (validNotification) {
@@ -52,16 +55,17 @@ const readNotification = async (id) => {
     }
 }
 
-// const getUnreadNotifications = async (id) => {
-//     try {
-//         return await Notification.find({ _id: id}, {read})
-//     } catch (error) {
-//         return helper.translateError(error);
-//     }
-// }
+const getUnreadNotifications = async (id) => {
+    try {
+        return await Notification.find({ forUser: id }, { isRead: false })
+    } catch (error) {
+        return helper.translateError(error);
+    }
+}
 
 module.exports = {
     addNotification,
     getUserNotifications,
     readNotification,
+    getUnreadNotifications
 }

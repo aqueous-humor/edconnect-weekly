@@ -12,7 +12,7 @@ import Layout from './shared/Layout';
 const Home = ({ projectList, user }) => {
 
     return (
-        <Layout user={user} >
+        <Layout user={user}>
             <>
                 <Jumbotron>
                     <div>

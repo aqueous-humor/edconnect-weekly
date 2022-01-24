@@ -19,7 +19,7 @@ import CommentUnlike from './CommentUnlike';
 import CommentDelete from './CommentDelete';
 
 
-const Comment = ({ comments, comment, guest, user, createdBy, editorValue, setEditorValue, activeEdit, setActiveEdit, activeReply, setActiveReply, editComment, deleteComment }) => {
+const Comment = ({ comment, guest, user, createdBy, editorValue, setEditorValue, activeEdit, setActiveEdit, activeReply, setActiveReply, editComment, deleteComment }) => {
     const { type, author, text, projectId, createdAt, _id, likes, parentId } = comment;
 
     // const [canLike, setCanLike] = useState(false);
@@ -31,7 +31,7 @@ const Comment = ({ comments, comment, guest, user, createdBy, editorValue, setEd
     const [likesArr, setLikesArr] = useState(likes);
     const [liked, setLiked] = useState(false);
     const [showReplies, setShowReplies] = useState(false);
-    // const [resp, setResp] = useState();
+    //const [resp, setResp] = useState();
 
     useEffect(() => {
         async function getRep() {
@@ -45,8 +45,24 @@ const Comment = ({ comments, comment, guest, user, createdBy, editorValue, setEd
     }, [])
 
     const addReply = (reply) => {
+        let postNotif;
         const newArr = [...replies, reply];
         setReplies(newArr);
+    }
+
+    const deleteReply = (id) => {
+        const newArr = replies.filter((reply) => {
+            return reply._id !== id;
+        })
+        setReplies(newArr);
+    }
+
+    const editReply = (id, newText) => {
+        replies.forEach((reply) => {
+            if (reply._id == id) {
+                reply.text = newText;
+            }
+        })
     }
 
     useEffect(() => {
@@ -224,8 +240,6 @@ const Comment = ({ comments, comment, guest, user, createdBy, editorValue, setEd
             {showReplies == true ? (
                 <CommentList
                     replies={replies}
-                    setReplies={setReplies}
-                    parentId={parentId}
                     user={user}
                     guest={guest}
                     createdBy={createdBy}
@@ -233,6 +247,8 @@ const Comment = ({ comments, comment, guest, user, createdBy, editorValue, setEd
                     setEditorValue={setEditorValue}
                     activeEdit={activeEdit}
                     setActiveEdit={setActiveEdit}
+                    editComment={editReply}
+                    deleteComment={deleteReply}
                 />
             ) : null
             }

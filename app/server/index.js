@@ -43,7 +43,7 @@ const SERVER_PORT = process.env.PORT || 4000;
     app.use("/", require("./controllers/home"));
     app.use("/", require("./controllers/project"));
     app.use("/", require("./controllers/comment"));
-    //app.use("/", require("./controllers/notification"));
+    app.use("/", require("./controllers/notification"));
     app.use(express.static('public'));
 
     app.listen(SERVER_PORT, () => console.log('Server listening on port ' + SERVER_PORT));
