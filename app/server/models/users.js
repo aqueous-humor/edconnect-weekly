@@ -19,10 +19,9 @@ class User {
 
 class Users extends DataModel {
     authenticate(email, password) {
-        if (this.data.find(object =>  object.email == email)) {
-            let index = this.data.indexOf(this.data.find(object => object.email == email));
-            let object = this.data[index];
-            if (object.password == password) {
+        let user = this.data.find(user =>  user.email == email);
+        if (user) {
+            if (user.password == password) {
                 return true;
             }
         }
@@ -30,18 +29,20 @@ class Users extends DataModel {
     }
 
     getByEmail(email) {
-        if (this.data.find(object =>  object.email == email).length === 0) {
+        let user = this.data.find(user =>  user.email == email);
+        if (!user) {
             return null;
         } else {
-        return this.data.find(object =>  object.email == email);
+        return user;
         }
     }
 
     getByMatricNumber(matricNumber) {
-        if (this.data.find(object =>  object.matricNumber == matricNumber).length === 0) {
+        let user = this.data.find(user =>  user.matricNumber == matricNumber);
+        if (!user) {
             return null;
         }
-        return this.data.find(object =>  object.matricNumber == matricNumber);
+        return user;
     }
 
     validate(obj) {
@@ -51,10 +52,10 @@ class Users extends DataModel {
                 this.errors.push(`${key} should not be empty`);
             }
         }
-        if (this.data.find(object =>  object.email == obj.email)) {
+        if (this.data.find(user =>  user.email == obj.email)) {
             this.errors.push('A user with specified email address already exists');
         } 
-        if (this.data.find(object =>  object.matricNumber == obj.matricNumber)){
+        if (this.data.find(user =>  user.matricNumber == obj.matricNumber)){
             this.errors.push('A user with specified matric number already exists');
         }
         if (obj.password.length < 7) {
