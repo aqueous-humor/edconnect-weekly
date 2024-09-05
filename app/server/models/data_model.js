@@ -26,11 +26,10 @@ class DataModel {
     update(obj, id) { 
         for (let key in obj) {
             let object = this.data.find(object => object.id == id);
-            if (object.length == 0) {
+            if (!object) {
                 return false;
-            } else {
-            object[key] = obj[key];
             }
+            object[key] = obj[key];
         }
         return true;
     }

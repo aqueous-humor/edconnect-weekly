@@ -13,6 +13,8 @@ let jones = new User(id(), 'jones', 'doe', 'jones@gmail.com', 'pass123', '06/114
 let empty = new User(id(), '', '', '', '', '', '', '');
 let users = new Users();
 
+console.log("Starting tests...");
+
 assert(users.save(john) === true, `saving a user should return true for a valid user`);
 assert(users.save(jones) === true, `saving a user should return true for a valid user`);
 assert(users.errors.length === 0, `error array should be empty after successfully creating a valid user`);
@@ -28,9 +30,10 @@ assert(users.getByEmail(john.email).getFullName() === 'john doe');
 assert(users.getByMatricNumber(john.matricNumber).getFullName() === 'john doe');
 assert(users.authenticate(john.email, john.password) === true);
 assert(users.update({ firstname: 'jane' }, john.id) === true);
+assert(users.update({ firstname: 'jaime' }, id()) === false);
 assert(users.getById(john.id).getFullName() === 'jane doe', `user detail is not being updated by the update method`)
 assert(users.delete(jones.id) === true);
-assert(users.getById(jones.id) === null, `deleted user should no longer be avaiable in the data array. The getById method should now return null for the specified id`)
+assert(users.getById(jones.id) === null, `deleted user should no longer be available in the data array. The getById method should now return null for the specified id`)
 assert(users.getAll().length === 1);
 
 
@@ -58,3 +61,4 @@ function id() {
         .toString(36)
         .substring(2);
 }
+console.log("All tests passed!");
