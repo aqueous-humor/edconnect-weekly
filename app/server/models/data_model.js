@@ -9,41 +9,41 @@ class DataModel {
     }
 
     getById(id) {
-        if (this.data.find(object => object.id == id)) {
-            return this.data.find(object => object.id == id);
+        if (this.data.find(user => user.id == id)) {
+            return this.data.find(user => user.id == id);
         }
         return null;
     }
 
-    save(obj) {
-        if (this.validate(obj)) {
-            this.data.push(obj);
+    save(user) {
+        if (this.validate(user)) {
+            this.data.push(user);
             return true;
         }
         return false;
     }
 
-    update(obj, id) { 
-        for (let key in obj) {
-            let object = this.data.find(object => object.id == id);
-            if (!object) {
+    update(user, id) { 
+        for (let key in user) {
+            let matchingUser = this.data.find(user => user.id == id);
+            if (!matchingUser) {
                 return false;
             }
-            object[key] = obj[key];
+            matchingUser[key] = user[key];
         }
         return true;
     }
 
     delete(id) {
-        if (this.data.find(object => object.id == id)) {
-            this.data = this.data.filter(object => object.id != id);
+        if (this.data.find(user => user.id == id)) {
+            this.data = this.data.filter(user => user.id != id);
             return true;
         }
         return false;
     }
 
     // this method will be overriden in the sub classes
-    validate(obj) {
+    validate(user) {
         return false;
     }
 }
