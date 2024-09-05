@@ -19,9 +19,8 @@ class User {
 
 class Users extends DataModel {
     authenticate(email, password) {
-        if (this.data.find(object =>  object.email == email)) {
-            let index = this.data.indexOf(this.data.find(object => object.email == email));
-            let object = this.data[index];
+        let object = this.data.find(object =>  object.email == email);
+        if (object) {
             if (object.password == password) {
                 return true;
             }
